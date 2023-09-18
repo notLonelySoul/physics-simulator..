@@ -5,6 +5,7 @@ import pygame
 import sys
 from math import *
 from utils import *
+from custom_plotter import *
 
 class BoxSlide:
     def __init__(self,inclination: float, box_mass= 1, fric_coeff = 0.5, gravity = 0.0009) -> None:
