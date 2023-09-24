@@ -146,6 +146,7 @@ class Pendulum:
         self.ang_bal_vel = 0
         self.graph_start_coord = (550, 100)
         self.graph_x_coord = 550
+        self.prev_ang_vel = 0
         self.kinetic_energy = 0.5*self.mass*((self.ang_bal_vel*self.rope_length)**2)
         height = 0
         self.potential_energy = self.mass*self.gravity*height
@@ -161,6 +162,7 @@ class Pendulum:
     def update_position(self):
         
         self.ang_bal_acc = -self.gravity*sin(self.inst_theta)/self.rope_length
+        self.prev_ang_vel = self.ang_bal_vel
         self.ang_bal_vel += self.ang_bal_acc
         self.inst_theta += self.ang_bal_vel
         
@@ -190,7 +192,24 @@ class Pendulum:
         pygame.draw.line(self.screen, (140, 140, 140), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]+size), width=1)
         pygame.draw.line(self.screen, (140, 140, 140), (self.graph_start_coord[0], self.graph_start_coord[1]+size-40), (self.graph_start_coord[0]+size, self.graph_start_coord[1]+size-40), width=1)
 
-        height = self.rope_length - self.rope_length * cos(self.inst_theta)
+        
+        # prev stats
+        prev_height =(self.rope_length-(self.prev_ball_pos[1]-self.joint[1]))
+        prev_potential_energy = self.mass * self.gravity * prev_height
+        prev_kinetic_energy = 0.5 * self.mass * self.rope_length**2 * self.prev_ang_vel**2
+        
+        prev_potential_y_coord = self.graph_start_coord[1]+size-40 - round(prev_potential_energy, 4)*1000
+        prev_kinetic_y_coord = self.graph_start_coord[1]+size-40 - round(prev_kinetic_energy, 4)*1000
+
+        prev_total_energy_coord = self.graph_start_coord[1]+size-40 -(round(prev_kinetic_energy, 4) + round(prev_potential_energy, 4))*1000
+        prev_graph_x_coord = self.graph_start_coord[0] -10 + (self.joint[0]+(self.prev_ball_pos[0]-self.joint[0]))/2
+
+        pygame.draw.circle(self.screen, (255, 0, 0), [prev_graph_x_coord, prev_potential_y_coord], radius=1)
+        pygame.draw.circle(self.screen, (0, 0, 255), [prev_graph_x_coord, prev_kinetic_y_coord], radius=1)
+        pygame.draw.circle(self.screen, (0, 255, 0), [prev_graph_x_coord, prev_total_energy_coord], radius=1)
+
+        # current stats
+        height = height = (self.rope_length-(self.ball_pos[1]-self.joint[1]))
         self.potential_energy = self.mass * self.gravity * height
         self.kinetic_energy = 0.5 * self.mass * self.rope_length**2 * self.ang_bal_vel**2
         
@@ -200,12 +219,17 @@ class Pendulum:
         total_energy_coord = self.graph_start_coord[1]+size-40 -(round(self.kinetic_energy, 4) + round(self.potential_energy, 4))*1000
         self.graph_x_coord = self.graph_start_coord[0] -10 + (self.joint[0]+(self.ball_pos[0]-self.joint[0]))/2
 
-        pygame.draw.circle(self.screen, (255, 0, 0), [self.graph_x_coord, potential_y_coord], radius=1)
-        pygame.draw.circle(self.screen, (0, 0, 255), [self.graph_x_coord, kinetic_y_coord], radius=1)
-        pygame.draw.circle(self.screen, (0, 255, 0), [self.graph_x_coord, total_energy_coord], radius=1)
+        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, potential_y_coord], radius=1.8)
+        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, kinetic_y_coord], radius=1.8)
+        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, total_energy_coord], radius=1.8)
 
         #container
         pygame.draw.rect(self.screen, (200, 200, 200), rect=pygame.Rect(self.graph_start_coord[0], self.graph_start_coord[1], size, size), border_radius=4, width=2)
+
+        # pendulum-position-indicator.
+        pygame.draw.circle(self.screen, (0, 0, 0), (prev_graph_x_coord, self.graph_start_coord[1]+size+40), radius=5)
+        pygame.draw.line(self.screen, (100, 100, 100), (self.graph_start_coord[0], self.graph_start_coord[1]+size+40), (self.graph_start_coord[0]+size, self.graph_start_coord[1]+size+40))
+        pygame.draw.circle(self.screen, (255, 255, 255), (self.graph_x_coord, self.graph_start_coord[1]+size+40),radius=5)
 
     def keep_alive(self):
         while True:
@@ -225,5 +249,5 @@ class Pendulum:
 
             pygame.display.update()
 
-pundu = Pendulum(theta=80, rope_length=1.8, gravity=0.0007)
+pundu = Pendulum(theta=60, rope_length=1.5, gravity=0.0007)
 pundu.keep_alive()
