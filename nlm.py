@@ -2,8 +2,10 @@ import pymunk
 import pymunk.pygame_util
 import pygame
 import sys
+import time
 from math import *
 from utils import *
+
 
 
 class BoxSlide:
@@ -249,5 +251,124 @@ class Pendulum:
 
             pygame.display.update()
 
-pundu = Pendulum(theta=60, rope_length=1.5, gravity=0.0007)
-pundu.keep_alive()
+
+class Spring:
+    def __init__(self, hanging: bool, spring_constant: float, box_mass= 1, fric_coeff = 0.5, gravity = 0.0009, amplitude = 3) -> None:
+        pygame.init()
+        self.screen = pygame.display.set_mode((800, 400))
+
+        self.box_mass = box_mass
+        self.fric_coeff = fric_coeff
+        self.gravity = gravity
+        self.k = spring_constant
+        self.hang = hanging 
+        
+        self.length = 300  # length of the plane
+        self.boxsize = 50
+        self.box_pos = None
+        self.v = 0
+        self.a = None
+        self.hinge = (350, 350)
+        self.main_run = False
+        self.start_point = None
+        self.slength = 50
+        self.graph_start_coord = (550, 100)
+        self.graph_x_coord = 550
+        self.kinetic_energy = 0.5*self.box_mass*(self.v**2)
+        self.x = -amplitude*10
+        self.potential_energy = 0.5*self.k*(self.x)**2
+
+    def create_environment_1(self):
+        
+        screenpoints = generate_box_points((40, 400), 0, 300)
+        pygame.draw.polygon(self.screen, (0, 0, 0), screenpoints)
+
+        miniscpts = generate_rectangle_points((self.graph_x_coord-10, self.graph_start_coord[1]+300), 0, 90, 220)
+        pygame.draw.polygon(self.screen, (0, 0, 0), miniscpts)
+
+        # rectangle
+        self.box_pos = (self.hinge[0]-self.length+120-self.x, self.hinge[1])
+        box_points = generate_box_points(self.box_pos, 0, self.boxsize)
+
+        wallstart = (self.hinge[0]-self.length, self.hinge[1])
+        wallpoints = generate_rectangle_points(wallstart, 0, self.boxsize, 10)
+
+        pygame.draw.polygon(self.screen, (255, 255, 255), box_points)
+        pygame.draw.polygon(self.screen, (150, 150, 150), wallpoints)
+
+        pygame.draw.line(self.screen, (150, 150, 150), (self.hinge[0]-self.length, self.hinge[1]), (self.hinge[0], self.hinge[1]), width=4)
+
+        springstart = (wallstart[0]+10, wallstart[1]-self.boxsize/2)
+        springend =  (self.box_pos[0], self.box_pos[1]-self.boxsize/2)
+
+        pygame.draw.line(self.screen, (50, 50, 50), springstart, springend)
+        pygame.draw.circle(self.screen, (100, 100, 100), springstart, radius=2)
+        pygame.draw.circle(self.screen, (100, 100, 100), springend, radius=2)
+
+    def update_movement(self):
+        self.a = (-(self.k*self.x/self.box_mass)+ copysign(1, self.x)*self.fric_coeff*self.gravity*self.v)*0.00003
+        self.v += self.a
+        self.x += self.v
+
+    def stats(self):
+        
+        size = 200
+
+        #grids
+        for i in range(self.graph_start_coord[0], self.graph_start_coord[0]+size+1, 20):
+            pygame.draw.line(self.screen, (50, 50, 50), (i, self.graph_start_coord[1]), (i, self.graph_start_coord[1]+size))
+
+        for i in range(self.graph_start_coord[1], self.graph_start_coord[1]+size, 20):
+            pygame.draw.line(self.screen, (50, 50, 50), (self.graph_start_coord[0], i), (self.graph_start_coord[0]+size, i))
+
+        #axis
+        pygame.draw.line(self.screen, (140, 140, 140), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]+size), width=1)
+        pygame.draw.line(self.screen, (140, 140, 140), (self.graph_start_coord[0], self.graph_start_coord[1]+size-40), (self.graph_start_coord[0]+size, self.graph_start_coord[1]+size-40), width=1)
+
+
+        # current stats
+        self.kinetic_energy = 0.5*self.box_mass*(self.v**2)
+        self.potential_energy = 0.5*self.k*(self.x/100)**2
+
+        potential_y_coord = self.graph_start_coord[1]+size-40 - round(self.potential_energy, 4)*1000
+        kinetic_y_coord = self.graph_start_coord[1]+size-40 - round(self.kinetic_energy, 4)*3333
+
+        total_energy_coord = self.graph_start_coord[1]+size-40 -(round(self.kinetic_energy, 4)*3.3333 + round(self.potential_energy, 4))*1000
+        self.graph_x_coord = self.graph_start_coord[0] + size/2 + (self.x)/1.5
+
+        pygame.draw.circle(self.screen, (255, 0, 0), [self.graph_x_coord, potential_y_coord], radius=1.4)
+        pygame.draw.circle(self.screen, (0, 0, 255), [self.graph_x_coord, kinetic_y_coord], radius=1.4)
+        pygame.draw.circle(self.screen, (0, 255, 0), [self.graph_x_coord, total_energy_coord], radius=1.4)
+
+        #container
+        pygame.draw.rect(self.screen, (200, 200, 200), rect=pygame.Rect(self.graph_start_coord[0], self.graph_start_coord[1], size, size), border_radius=4, width=2)
+
+        # pendulum-position-indicator.
+        pygame.draw.line(self.screen, (100, 100, 100), (self.graph_start_coord[0], self.graph_start_coord[1]+size+40), (self.graph_start_coord[0]+size, self.graph_start_coord[1]+size+40))
+        pygame.draw.circle(self.screen, (255, 255, 255), (self.graph_x_coord, self.graph_start_coord[1]+size+40),radius=5)
+    
+
+    def keep_alive(self):
+        while True:
+            
+            if not self.hang:
+                self.create_environment_1()
+                self.update_movement()
+                self.stats()
+                
+                if round(self.x, 4) == 0:
+                    print('it works')
+                    break
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            pygame.display.update()
+
+sping = Spring(hanging=False, spring_constant=0.5, fric_coeff=0.5, amplitude=7)
+sping.keep_alive()
+
+'''dabba = BoxSlide(inclination= 10, fric_coeff=0.9)
+dabba.keep_alive()'''
