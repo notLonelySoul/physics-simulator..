@@ -13,3 +13,4 @@ def generate_rectangle_points(rp: tuple, inclination, boxsize, width):
     point3 = (point2[0] - boxsize*sin(inclination), point2[1] + boxsize*cos(inclination))
 
     return (rp, point1, point2, point3)
+
