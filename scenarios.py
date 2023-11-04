@@ -9,7 +9,7 @@ class Ui_secondwindow(object):
         mass = float(self.penduboxmass_2.toPlainText())
         friction = self.fricoeff.value() / 100
         inc = 1 + (84 / 100) * self.incdial.value()
-        box = BoxSlide(inc, mass, friction, preview=False)
+        box = BoxSlide(inc, mass, friction)
         window.close()
         box.keep_alive()
 
@@ -78,7 +78,7 @@ class Ui_secondwindow(object):
         k = self.kdial.value()*0.1
         mass = float(self.spboxval.toPlainText())
         amp = self.ampslid.value()/10
-        spring = Spring(hanging=False, spring_constant=k, box_mass=mass, amplitude=amp)
+        spring = Spring(spring_constant=k, box_mass=mass, amplitude=amp)
         window.close()
         spring.keep_alive()
 
