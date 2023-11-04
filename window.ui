@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(7, 7, 7);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="Heading">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 57 20pt &quot;SF Pro Text&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Physics Simulator.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="paragraph">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>211</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 12pt &quot;SF Pro Text&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Designed to help students understand physics in a better way by visualising the process through accurate simulations. </string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="boximage">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>20</y>
+      <width>501</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/Untitled.svg</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="boxhead">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>20</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sliding box simulator.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="boxpara">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>60</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Visualize the variation of kinetic and potential as the box descends the slope.</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pendimg">
+    <property name="geometry">
+     <rect>
+      <x>-170</x>
+      <y>240</y>
+      <width>491</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/Untitled (1).svg</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="penduhead">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>290</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pendulum simulator.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pendupara">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>310</y>
+      <width>141</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Provides a greater understanding of the maximum and minimum energy of the pendulum during oscillation.</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="springimg">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>160</y>
+      <width>431</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/Untitled (3).svg</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="springhead">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>210</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Spring Mass simulator.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="springpara">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>220</y>
+      <width>151</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Understand the forces causing the acceleration and the mechanical energy in greater depth.</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gobutton">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>380</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-color: rgb(11, 11, 11);
+	border: 3px solid;
+	border-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	font: 57 16pt &quot;SF Pro Text&quot;;
+}
+
+QPushButton:hover {
+	background-color: rgb(25, 25, 25);
+}
+
+QPushButton:pressed {
+	background-color: rgb(11, 11, 11);
+}</string>
+    </property>
+    <property name="text">
+     <string>Go !</string>
+    </property>
+   </widget>
+   <zorder>boximage</zorder>
+   <zorder>paragraph</zorder>
+   <zorder>Heading</zorder>
+   <zorder>boxhead</zorder>
+   <zorder>boxpara</zorder>
+   <zorder>pendimg</zorder>
+   <zorder>penduhead</zorder>
+   <zorder>pendupara</zorder>
+   <zorder>springimg</zorder>
+   <zorder>springpara</zorder>
+   <zorder>gobutton</zorder>
+   <zorder>springhead</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
