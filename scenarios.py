@@ -62,7 +62,7 @@ class Ui_secondwindow(object):
         self.kval.display(self.kdial.value() * 0.1)
 
     def show_amp(self):
-        self.ampval.display(self.ampslid.value())
+        self.ampval.display(self.ampslid.value()/10)
 
     def show_s_energy(self):
         k = self.kdial.value()*0.1
@@ -86,7 +86,7 @@ class Ui_secondwindow(object):
         secondwindow.setObjectName("secondwindow")
         secondwindow.resize(800, 500)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../Downloads/atom (2).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("resources/atom (2).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         secondwindow.setWindowIcon(icon)
         secondwindow.setStyleSheet("background-color: rgb(7, 7, 7);")
         self.centralwidget = QtWidgets.QWidget(secondwindow)
@@ -99,8 +99,7 @@ class Ui_secondwindow(object):
         self.Spring_tab = QtWidgets.QWidget()
         self.Spring_tab.setObjectName("Spring_tab")
         self.incdial = QtWidgets.QDial(self.Spring_tab)
-        self.incdial.valueChanged.connect(lambda: self.show_inc_val())
-
+        self.incdial.valueChanged.connect(lambda : self.show_inc_val())
         self.incdial.setGeometry(QtCore.QRect(460, 70, 71, 61))
         self.incdial.setStyleSheet("background-color: rgb(46, 46, 46);\n"
 "color: rgb(85, 170, 255);")
@@ -109,13 +108,13 @@ class Ui_secondwindow(object):
         self.incdial.setNotchesVisible(True)
         self.incdial.setObjectName("incdial")
         self.inctext = QtWidgets.QLabel(self.Spring_tab)
-        self.inctext.setGeometry(QtCore.QRect(460, 140, 81, 41))
-        self.inctext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.inctext.setGeometry(QtCore.QRect(450, 140, 101, 41))
+        self.inctext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.inctext.setObjectName("inctext")
         self.fricoeff = QtWidgets.QSlider(self.Spring_tab)
         self.fricoeff.valueChanged.connect(lambda: self.show_fric_val())
-
         self.fricoeff.setGeometry(QtCore.QRect(640, 60, 16, 121))
         self.fricoeff.setStyleSheet("background-color: rgb(31, 31, 31);\n"
 "color: rgb(85, 170, 255);\n"
@@ -123,9 +122,10 @@ class Ui_secondwindow(object):
         self.fricoeff.setOrientation(QtCore.Qt.Vertical)
         self.fricoeff.setObjectName("fricoeff")
         self.frictext = QtWidgets.QLabel(self.Spring_tab)
-        self.frictext.setGeometry(QtCore.QRect(670, 110, 81, 41))
-        self.frictext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.frictext.setGeometry(QtCore.QRect(670, 110, 91, 41))
+        self.frictext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 10pt \"Courier New\";")
         self.frictext.setWordWrap(True)
         self.frictext.setObjectName("frictext")
         self.energyeq = QtWidgets.QLabel(self.Spring_tab)
@@ -133,17 +133,19 @@ class Ui_secondwindow(object):
         self.energyeq.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
 "alternate-background-color: rgb(4, 4, 4);")
         self.energyeq.setText("")
-        self.energyeq.setPixmap(QtGui.QPixmap("../../../Downloads/image (1).png"))
+        self.energyeq.setPixmap(QtGui.QPixmap("resources/image (1).png"))
         self.energyeq.setObjectName("energyeq")
         self.energyval = QtWidgets.QLabel(self.Spring_tab)
         self.energyval.setGeometry(QtCore.QRect(380, 260, 121, 31))
-        self.energyval.setStyleSheet("font: 57 12pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.energyval.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 12pt \"Courier New\";")
         self.energyval.setObjectName("energyval")
         self.boxheading = QtWidgets.QLabel(self.Spring_tab)
-        self.boxheading.setGeometry(QtCore.QRect(30, 30, 141, 61))
-        self.boxheading.setStyleSheet("font: 57 16pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.boxheading.setGeometry(QtCore.QRect(30, 30, 221, 61))
+        self.boxheading.setStyleSheet("background-color: rgb(4, 4, 4);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 75 20pt \"Courier\";")
         self.boxheading.setObjectName("boxheading")
         self.incval = QtWidgets.QLCDNumber(self.Spring_tab)
         self.incval.setGeometry(QtCore.QRect(463, 30, 61, 23))
@@ -156,19 +158,21 @@ class Ui_secondwindow(object):
 "border-radius:5px;")
         self.fricval.setObjectName("fricval")
         self.para = QtWidgets.QLabel(self.Spring_tab)
-        self.para.setGeometry(QtCore.QRect(30, 70, 371, 151))
-        self.para.setStyleSheet("background-color: rgb(4, 4, 4);\n"
-"font: 10pt \"SF Pro Text\";")
+        self.para.setGeometry(QtCore.QRect(30, 80, 371, 151))
+        self.para.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 10pt \"Courier New\";")
         self.para.setWordWrap(True)
         self.para.setObjectName("para")
-        self.gobutton = QtWidgets.QPushButton(self.Spring_tab, clicked= lambda: self.run_box_sim(secondwindow))
+        self.gobutton = QtWidgets.QPushButton(self.Spring_tab, clicked=lambda: self.run_box_sim(secondwindow))
         self.gobutton.setGeometry(QtCore.QRect(580, 280, 171, 61))
         self.gobutton.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(11, 11, 11);\n"
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
+"    color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 16pt \"SF Pro Text\";\n"
+"    font: 16pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -180,14 +184,16 @@ class Ui_secondwindow(object):
 "    border-color: rgb(136, 136, 136);\n"
 "}")
         self.gobutton.setObjectName("gobutton")
-        self.box_calc = QtWidgets.QPushButton(self.Spring_tab, clicked= lambda: self.show_box_energy())
+        self.box_calc = QtWidgets.QPushButton(self.Spring_tab, clicked=lambda: self.show_box_energy())
         self.box_calc.setGeometry(QtCore.QRect(40, 350, 171, 41))
         self.box_calc.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(11, 11, 11);\n"
 "    border: 3px solid;\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 14pt \"SF Pro Text\";\n"
+"    font: 12pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -200,9 +206,10 @@ class Ui_secondwindow(object):
 "}")
         self.box_calc.setObjectName("box_calc")
         self.penduboxmass_2 = QtWidgets.QPlainTextEdit(self.Spring_tab)
-        self.penduboxmass_2.setGeometry(QtCore.QRect(610, 210, 121, 31))
+        self.penduboxmass_2.setGeometry(QtCore.QRect(590, 210, 151, 31))
         self.penduboxmass_2.setStyleSheet("background-color: rgb(34, 34, 34);\n"
 "border-radius: 4px;\n"
+"font: 12pt \"Courier New\";"
 "")
         self.penduboxmass_2.setMaximumBlockCount(1)
         self.penduboxmass_2.setObjectName("penduboxmass_2")
@@ -220,8 +227,6 @@ class Ui_secondwindow(object):
         self.box_calc.raise_()
         self.penduboxmass_2.raise_()
         self.tabWidget.addTab(self.Spring_tab, "")
-
-        # Pendulum.
         self.Pendutab = QtWidgets.QWidget()
         self.Pendutab.setObjectName("Pendutab")
         self.thetaval = QtWidgets.QLCDNumber(self.Pendutab)
@@ -231,30 +236,35 @@ class Ui_secondwindow(object):
         self.thetaval.setObjectName("thetaval")
         self.thetext = QtWidgets.QLabel(self.Pendutab)
         self.thetext.setGeometry(QtCore.QRect(460, 130, 81, 41))
-        self.thetext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.thetext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.thetext.setAlignment(QtCore.Qt.AlignCenter)
         self.thetext.setObjectName("thetext")
         self.penduhead = QtWidgets.QLabel(self.Pendutab)
         self.penduhead.setGeometry(QtCore.QRect(30, 30, 141, 61))
-        self.penduhead.setStyleSheet("font: 57 16pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.penduhead.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 16pt \"Courier New\";")
         self.penduhead.setObjectName("penduhead")
         self.pendenval = QtWidgets.QLabel(self.Pendutab)
         self.pendenval.setGeometry(QtCore.QRect(380, 240, 121, 31))
-        self.pendenval.setStyleSheet("font: 57 12pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.pendenval.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.pendenval.setObjectName("pendenval")
         self.lengtext = QtWidgets.QLabel(self.Pendutab)
         self.lengtext.setGeometry(QtCore.QRect(670, 90, 81, 41))
-        self.lengtext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.lengtext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.lengtext.setWordWrap(True)
         self.lengtext.setObjectName("lengtext")
         self.pendupara = QtWidgets.QLabel(self.Pendutab)
         self.pendupara.setGeometry(QtCore.QRect(30, 80, 371, 151))
-        self.pendupara.setStyleSheet("background-color: rgb(4, 4, 4);\n"
-"font: 10pt \"SF Pro Text\";")
+        self.pendupara.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 10pt \"Courier New\";")
         self.pendupara.setWordWrap(True)
         self.pendupara.setObjectName("pendupara")
         self.lengthslider = QtWidgets.QSlider(self.Pendutab)
@@ -269,7 +279,7 @@ class Ui_secondwindow(object):
         self.pendenerg.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
 "alternate-background-color: rgb(4, 4, 4);")
         self.pendenerg.setText("")
-        self.pendenerg.setPixmap(QtGui.QPixmap("../../../Downloads/image (1).png"))
+        self.pendenerg.setPixmap(QtGui.QPixmap("resources/image (1).png"))
         self.pendenerg.setObjectName("pendenerg")
         self.pendial = QtWidgets.QDial(self.Pendutab)
         self.pendial.valueChanged.connect(lambda: self.show_theta_val())
@@ -283,14 +293,16 @@ class Ui_secondwindow(object):
         self.lenval.setStyleSheet("background-color: rgb(14, 14, 14);\n"
 "border-radius:5px;")
         self.lenval.setObjectName("lenval")
-        self.pendugo = QtWidgets.QPushButton(self.Pendutab, clicked=lambda: self.run_pendu_sim(secondwindow))
+        self.pendugo = QtWidgets.QPushButton(self.Pendutab, clicked = lambda: self.run_pendu_sim(secondwindow))
         self.pendugo.setGeometry(QtCore.QRect(580, 280, 171, 61))
         self.pendugo.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(11, 11, 11);\n"
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 16pt \"SF Pro Text\";\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
+"    font: 16pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -307,16 +319,19 @@ class Ui_secondwindow(object):
         self.pendutpeq.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
 "alternate-background-color: rgb(4, 4, 4);")
         self.pendutpeq.setText("")
-        self.pendutpeq.setPixmap(QtGui.QPixmap("../../../Downloads/image (2).png"))
+        self.pendutpeq.setPixmap(QtGui.QPixmap("resources/image (2).png"))
         self.pendutpeq.setObjectName("pendutpeq")
         self.tpvals = QtWidgets.QLabel(self.Pendutab)
         self.tpvals.setGeometry(QtCore.QRect(280, 300, 121, 31))
-        self.tpvals.setStyleSheet("font: 57 12pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.tpvals.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 12pt \"Courier New\";")
         self.tpvals.setObjectName("tpvals")
         self.penduboxmass = QtWidgets.QPlainTextEdit(self.Pendutab)
-        self.penduboxmass.setGeometry(QtCore.QRect(610, 210, 121, 31))
+        self.penduboxmass.setGeometry(QtCore.QRect(590, 210, 151, 31))
         self.penduboxmass.setStyleSheet("background-color: rgb(34, 34, 34);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 12pt \"Courier New\";\n"
 "border-radius: 4px;\n"
 "")
         self.penduboxmass.setMaximumBlockCount(1)
@@ -328,7 +343,9 @@ class Ui_secondwindow(object):
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 14pt \"SF Pro Text\";\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
+"    font: 12pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -356,20 +373,19 @@ class Ui_secondwindow(object):
         self.penduboxmass.raise_()
         self.penducalc.raise_()
         self.tabWidget.addTab(self.Pendutab, "")
-
-
-        # Spring-Mass.
         self.Boxtab = QtWidgets.QWidget()
         self.Boxtab.setObjectName("Boxtab")
         self.spenergval = QtWidgets.QLabel(self.Boxtab)
         self.spenergval.setGeometry(QtCore.QRect(380, 240, 121, 31))
-        self.spenergval.setStyleSheet("font: 57 12pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.spenergval.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.spenergval.setObjectName("spenergval")
         self.ktext = QtWidgets.QLabel(self.Boxtab)
         self.ktext.setGeometry(QtCore.QRect(460, 140, 81, 41))
-        self.ktext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.ktext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.ktext.setAlignment(QtCore.Qt.AlignCenter)
         self.ktext.setWordWrap(True)
         self.ktext.setObjectName("ktext")
@@ -378,7 +394,7 @@ class Ui_secondwindow(object):
         self.spenergeq.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
 "alternate-background-color: rgb(4, 4, 4);")
         self.spenergeq.setText("")
-        self.spenergeq.setPixmap(QtGui.QPixmap("../../../Downloads/image (1).png"))
+        self.spenergeq.setPixmap(QtGui.QPixmap("resources/image (3).png"))
         self.spenergeq.setObjectName("spenergeq")
         self.ampval = QtWidgets.QLCDNumber(self.Boxtab)
         self.ampval.setGeometry(QtCore.QRect(610, 20, 64, 23))
@@ -387,17 +403,19 @@ class Ui_secondwindow(object):
         self.ampval.setObjectName("ampval")
         self.tpval = QtWidgets.QLabel(self.Boxtab)
         self.tpval.setGeometry(QtCore.QRect(280, 300, 121, 31))
-        self.tpval.setStyleSheet("font: 57 12pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.tpval.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 12pt \"Courier New\";")
         self.tpval.setObjectName("tpval")
-        self.spgobutton = QtWidgets.QPushButton(self.Boxtab, clicked=lambda: self.run_spring_sim(secondwindow))
+        self.spgobutton = QtWidgets.QPushButton(self.Boxtab, clicked=lambda:self.run_spring_sim(secondwindow))
         self.spgobutton.setGeometry(QtCore.QRect(580, 280, 171, 61))
         self.spgobutton.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(11, 11, 11);\n"
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 16pt \"SF Pro Text\";\n"
+"    color: rgb(245, 245, 245);\n"
+"    font: 16pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -411,8 +429,9 @@ class Ui_secondwindow(object):
         self.spgobutton.setObjectName("spgobutton")
         self.amptext = QtWidgets.QLabel(self.Boxtab)
         self.amptext.setGeometry(QtCore.QRect(670, 90, 81, 41))
-        self.amptext.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.amptext.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 11pt \"Courier New\";")
         self.amptext.setWordWrap(True)
         self.amptext.setObjectName("amptext")
         self.kdial = QtWidgets.QDial(self.Boxtab)
@@ -437,14 +456,16 @@ class Ui_secondwindow(object):
         self.ampslid.setOrientation(QtCore.Qt.Vertical)
         self.ampslid.setObjectName("ampslid")
         self.Springhead = QtWidgets.QLabel(self.Boxtab)
-        self.Springhead.setGeometry(QtCore.QRect(30, 30, 211, 61))
-        self.Springhead.setStyleSheet("font: 57 16pt \"SF Pro Text\";\n"
-"background-color: rgb(4, 4, 4);")
+        self.Springhead.setGeometry(QtCore.QRect(30, 30, 251, 61))
+        self.Springhead.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 16pt \"Courier New\";")
         self.Springhead.setObjectName("Springhead")
         self.springpara = QtWidgets.QLabel(self.Boxtab)
-        self.springpara.setGeometry(QtCore.QRect(30, 80, 371, 151))
-        self.springpara.setStyleSheet("background-color: rgb(4, 4, 4);\n"
-"font: 10pt \"SF Pro Text\";")
+        self.springpara.setGeometry(QtCore.QRect(30, 80, 421, 151))
+        self.springpara.setStyleSheet("color: rgb(245, 245, 245);\n"
+"background-color: rgb(4, 4, 4);\n"
+"font: 10pt \"Courier New\";")
         self.springpara.setWordWrap(True)
         self.springpara.setObjectName("springpara")
         self.tpeq = QtWidgets.QLabel(self.Boxtab)
@@ -452,11 +473,13 @@ class Ui_secondwindow(object):
         self.tpeq.setStyleSheet("font: 57 11pt \"SF Pro Text\";\n"
 "alternate-background-color: rgb(4, 4, 4);")
         self.tpeq.setText("")
-        self.tpeq.setPixmap(QtGui.QPixmap("../../../Downloads/image (3).png"))
+        self.tpeq.setPixmap(QtGui.QPixmap("resources/image (4).png"))
         self.tpeq.setObjectName("tpeq")
         self.spboxval = QtWidgets.QPlainTextEdit(self.Boxtab)
-        self.spboxval.setGeometry(QtCore.QRect(610, 210, 121, 31))
+        self.spboxval.setGeometry(QtCore.QRect(590, 210, 151, 31))
         self.spboxval.setStyleSheet("background-color: rgb(34, 34, 34);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 12pt \"Courier New\";\n"
 "border-radius: 4px;\n"
 "")
         self.spboxval.setMaximumBlockCount(1)
@@ -468,7 +491,8 @@ class Ui_secondwindow(object):
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 14pt \"SF Pro Text\";\n"
+"    color: rgb(245, 245, 245);\n"
+"    font: 12pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -506,40 +530,40 @@ class Ui_secondwindow(object):
         secondwindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(secondwindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(secondwindow)
 
     def retranslateUi(self, secondwindow):
         _translate = QtCore.QCoreApplication.translate
-        secondwindow.setWindowTitle(_translate("secondwindow", "MainWindow"))
+        secondwindow.setWindowTitle(_translate("secondwindow", "scenarios"))
         self.inctext.setText(_translate("secondwindow", "Inclination"))
         self.frictext.setText(_translate("secondwindow", "Friction coefficient"))
-        self.energyval.setText(_translate("secondwindow", "Dummy Text kJ"))
+        self.energyval.setText(_translate("secondwindow", "--- kJ"))
         self.boxheading.setText(_translate("secondwindow", "A Sliding Box."))
         self.para.setText(_translate("secondwindow", "In the realm of physics, the study of an object\'s motion down an inclined slope is a fundamental and captivating topic. It encapsulates essential principles such as gravity, friction, acceleration, and the conservation of energy. This scenario serves as a microcosm for understanding the laws of motion and forces in our everyday world."))
         self.gobutton.setText(_translate("secondwindow", "Go !"))
-        self.box_calc.setText(_translate("secondwindow", "Calculate Values."))
+        self.box_calc.setText(_translate("secondwindow", "Calculate Values"))
         self.penduboxmass_2.setPlaceholderText(_translate("secondwindow", "Enter box mass."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Spring_tab), _translate("secondwindow", "Box Slide"))
         self.thetext.setText(_translate("secondwindow", "Theta"))
         self.penduhead.setText(_translate("secondwindow", "Pendulum."))
-        self.pendenval.setText(_translate("secondwindow", "Dummy Text kJ"))
+        self.pendenval.setText(_translate("secondwindow", "--- kJ"))
         self.lengtext.setText(_translate("secondwindow", "length of rope"))
         self.pendupara.setText(_translate("secondwindow", "In the world of physics, few systems are as captivating as the pendulum. This elegant apparatus, often seen in grandfather clocks and laboratories, offers a wealth of insight into the fundamental principles of motion and equilibrium. Explore the mesmerizing oscillations of a pendulum, delving into concepts such as periodic motion, equilibrium, and the profound influence of gravity."))
         self.pendugo.setText(_translate("secondwindow", "Go !"))
-        self.tpvals.setText(_translate("secondwindow", "Dummy Text s"))
+        self.tpvals.setText(_translate("secondwindow", "--- s"))
         self.penduboxmass.setPlaceholderText(_translate("secondwindow", "Enter box mass."))
-        self.penducalc.setText(_translate("secondwindow", "Calculate Values."))
+        self.penducalc.setText(_translate("secondwindow", "Calculate Values"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Pendutab), _translate("secondwindow", "Pendulum"))
-        self.spenergval.setText(_translate("secondwindow", "Dummy Text kJ"))
+        self.spenergval.setText(_translate("secondwindow", "--- kJ"))
         self.ktext.setText(_translate("secondwindow", "spring constant"))
-        self.tpval.setText(_translate("secondwindow", "Dummy Text s"))
+        self.tpval.setText(_translate("secondwindow", "--- s"))
         self.spgobutton.setText(_translate("secondwindow", "Go !"))
         self.amptext.setText(_translate("secondwindow", "Amplitude"))
         self.Springhead.setText(_translate("secondwindow", "Spring-Mass System."))
         self.springpara.setText(_translate("secondwindow", "Within the domain of physics, the spring-mass system stands as a captivating and instructive subject of study. This system, characterized by its oscillatory behavior, provides valuable insights into the core principles of mechanical vibrations. In this exploration, we\'ll delve into the intricate dynamics of the spring-mass system, examining concepts such as simple harmonic motion, equilibrium, and the fundamental role of Hooke\'s law."))
         self.spboxval.setPlaceholderText(_translate("secondwindow", "Enter box mass."))
-        self.spingcalc.setText(_translate("secondwindow", "Calculate Values."))
+        self.spingcalc.setText(_translate("secondwindow", "Calculate Values"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Boxtab), _translate("secondwindow", "Spring"))
 
 

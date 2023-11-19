@@ -34,7 +34,7 @@
      <string notr="true">background-color: rgb(4, 4, 4);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="usesScrollButtons">
      <bool>true</bool>
@@ -69,15 +69,16 @@ color: rgb(85, 170, 255);</string>
      <widget class="QLabel" name="inctext">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>450</x>
         <y>140</y>
-        <width>81</width>
+        <width>101</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Inclination</string>
@@ -106,13 +107,14 @@ border-radius: 3px;</string>
        <rect>
         <x>670</x>
         <y>110</y>
-        <width>81</width>
+        <width>91</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 10pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Friction coefficient</string>
@@ -151,11 +153,12 @@ alternate-background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 12pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 12pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
-       <string>Dummy Text kJ</string>
+       <string>--- kJ</string>
       </property>
      </widget>
      <widget class="QLabel" name="boxheading">
@@ -163,13 +166,14 @@ background-color: rgb(4, 4, 4);</string>
        <rect>
         <x>30</x>
         <y>30</y>
-        <width>141</width>
+        <width>221</width>
         <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 16pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">background-color: rgb(4, 4, 4);
+color: rgb(245, 245, 245);
+font: 75 20pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>A Sliding Box.</string>
@@ -207,14 +211,15 @@ border-radius:5px;</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>70</y>
+        <y>80</y>
         <width>371</width>
         <height>151</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(4, 4, 4);
-font: 10pt &quot;SF Pro Text&quot;;</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 10pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>In the realm of physics, the study of an object's motion down an inclined slope is a fundamental and captivating topic. It encapsulates essential principles such as gravity, friction, acceleration, and the conservation of energy. This scenario serves as a microcosm for understanding the laws of motion and forces in our everyday world.</string>
@@ -237,8 +242,9 @@ font: 10pt &quot;SF Pro Text&quot;;</string>
 	background-color: rgb(11, 11, 11);
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 16pt &quot;SF Pro Text&quot;;
+	font: 16pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -267,9 +273,11 @@ QPushButton:pressed {
        <string notr="true">QPushButton {
 	background-color: rgb(11, 11, 11);
 	border: 3px solid;
+	
+	color: rgb(255, 255, 255);
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 14pt &quot;SF Pro Text&quot;;
+	font: 12pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -282,15 +290,15 @@ QPushButton:pressed {
 }</string>
       </property>
       <property name="text">
-       <string>Calculate Values.</string>
+       <string>Calculate Values</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="penduboxmass_2">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>590</x>
         <y>210</y>
-        <width>121</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
@@ -348,8 +356,9 @@ border-radius:3px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Theta</string>
@@ -368,8 +377,9 @@ background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 16pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 16pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Pendulum.</string>
@@ -385,11 +395,12 @@ background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 12pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
-       <string>Dummy Text kJ</string>
+       <string>--- kJ</string>
       </property>
      </widget>
      <widget class="QLabel" name="lengtext">
@@ -402,8 +413,9 @@ background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>length of rope</string>
@@ -422,8 +434,9 @@ background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(4, 4, 4);
-font: 10pt &quot;SF Pro Text&quot;;</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 10pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>In the world of physics, few systems are as captivating as the pendulum. This elegant apparatus, often seen in grandfather clocks and laboratories, offers a wealth of insight into the fundamental principles of motion and equilibrium. Explore the mesmerizing oscillations of a pendulum, delving into concepts such as periodic motion, equilibrium, and the profound influence of gravity.</string>
@@ -517,7 +530,9 @@ border-radius:5px;</string>
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 16pt &quot;SF Pro Text&quot;;
+	
+	color: rgb(255, 255, 255);
+	font: 16pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -563,24 +578,27 @@ alternate-background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 12pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 12pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
-       <string>Dummy Text s</string>
+       <string>--- s</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="penduboxmass">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>590</x>
         <y>210</y>
-        <width>121</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(34, 34, 34);
+color: rgb(245, 245, 245);
+font: 12pt &quot;Courier New&quot;;
 border-radius: 4px;
 </string>
       </property>
@@ -606,7 +624,9 @@ border-radius: 4px;
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 14pt &quot;SF Pro Text&quot;;
+	
+	color: rgb(255, 255, 255);
+	font: 12pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -619,7 +639,7 @@ QPushButton:pressed {
 }</string>
       </property>
       <property name="text">
-       <string>Calculate Values.</string>
+       <string>Calculate Values</string>
       </property>
      </widget>
      <zorder>pendenerg</zorder>
@@ -652,11 +672,12 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 12pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
-       <string>Dummy Text kJ</string>
+       <string>--- kJ</string>
       </property>
      </widget>
      <widget class="QLabel" name="ktext">
@@ -669,8 +690,9 @@ background-color: rgb(4, 4, 4);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>spring constant</string>
@@ -726,11 +748,12 @@ border-radius:5px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 12pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 12pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
-       <string>Dummy Text s</string>
+       <string>--- s</string>
       </property>
      </widget>
      <widget class="QPushButton" name="spgobutton">
@@ -748,7 +771,8 @@ background-color: rgb(4, 4, 4);</string>
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 16pt &quot;SF Pro Text&quot;;
+	color: rgb(245, 245, 245);
+	font: 16pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -774,8 +798,9 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 11pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 11pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Amplitude</string>
@@ -843,13 +868,14 @@ border-radius: 3px;</string>
        <rect>
         <x>30</x>
         <y>30</y>
-        <width>211</width>
+        <width>251</width>
         <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 57 16pt &quot;SF Pro Text&quot;;
-background-color: rgb(4, 4, 4);</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 16pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Spring-Mass System.</string>
@@ -860,13 +886,14 @@ background-color: rgb(4, 4, 4);</string>
        <rect>
         <x>30</x>
         <y>80</y>
-        <width>371</width>
+        <width>421</width>
         <height>151</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(4, 4, 4);
-font: 10pt &quot;SF Pro Text&quot;;</string>
+       <string notr="true">color: rgb(245, 245, 245);
+background-color: rgb(4, 4, 4);
+font: 10pt &quot;Courier New&quot;;</string>
       </property>
       <property name="text">
        <string>Within the domain of physics, the spring-mass system stands as a captivating and instructive subject of study. This system, characterized by its oscillatory behavior, provides valuable insights into the core principles of mechanical vibrations. In this exploration, we'll delve into the intricate dynamics of the spring-mass system, examining concepts such as simple harmonic motion, equilibrium, and the fundamental role of Hooke's law.</string>
@@ -898,14 +925,16 @@ alternate-background-color: rgb(4, 4, 4);</string>
      <widget class="QPlainTextEdit" name="spboxval">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>590</x>
         <y>210</y>
-        <width>121</width>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(34, 34, 34);
+color: rgb(245, 245, 245);
+font: 12pt &quot;Courier New&quot;;
 border-radius: 4px;
 </string>
       </property>
@@ -931,7 +960,8 @@ border-radius: 4px;
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 14pt &quot;SF Pro Text&quot;;
+	color: rgb(245, 245, 245);
+	font: 12pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -944,7 +974,7 @@ QPushButton:pressed {
 }</string>
       </property>
       <property name="text">
-       <string>Calculate Values.</string>
+       <string>Calculate Values</string>
       </property>
      </widget>
      <zorder>spenergeq</zorder>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>resources/atom (2).png</normaloff>resources/atom (2).png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(7, 7, 7);</string>
   </property>
@@ -22,14 +26,14 @@
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>231</width>
+      <width>261</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(7, 7, 7);
 color: rgb(245, 245, 245);
-font: 57 20pt &quot;SF Pro Text&quot;;</string>
+font: 18pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Physics Simulator.</string>
@@ -50,7 +54,7 @@ font: 57 20pt &quot;SF Pro Text&quot;;</string>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(7, 7, 7);
 color: rgb(245, 245, 245);
-font: 12pt &quot;SF Pro Text&quot;;</string>
+font: 12pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Designed to help students understand physics in a better way by visualising the process through accurate simulations. </string>
@@ -68,11 +72,14 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
       <height>261</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);</string>
+    </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../Downloads/Untitled.svg</pixmap>
+     <pixmap>resources/Untitled.svg</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="boxhead">
@@ -80,9 +87,14 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
      <rect>
       <x>430</x>
       <y>20</y>
-      <width>141</width>
+      <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 11pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Sliding box simulator.</string>
@@ -93,9 +105,14 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
      <rect>
       <x>450</x>
       <y>60</y>
-      <width>161</width>
+      <width>181</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 10pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Visualize the variation of kinetic and potential as the box descends the slope.</string>
@@ -113,6 +130,9 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
       <height>401</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -125,9 +145,14 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
      <rect>
       <x>160</x>
       <y>290</y>
-      <width>141</width>
+      <width>171</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 11pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Pendulum simulator.</string>
@@ -138,9 +163,14 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
      <rect>
       <x>130</x>
       <y>310</y>
-      <width>141</width>
+      <width>151</width>
       <height>111</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 10pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Provides a greater understanding of the maximum and minimum energy of the pendulum during oscillation.</string>
@@ -158,6 +188,9 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
       <height>211</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -168,11 +201,16 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
    <widget class="QLabel" name="springhead">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>210</y>
-      <width>151</width>
+      <x>340</x>
+      <y>200</y>
+      <width>201</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 11pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Spring Mass simulator.</string>
@@ -186,6 +224,11 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
       <width>151</width>
       <height>111</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(7, 7, 7);
+color: rgb(245, 245, 245);
+font: 10pt &quot;Courier New&quot;;</string>
     </property>
     <property name="text">
      <string>Understand the forces causing the acceleration and the mechanical energy in greater depth.</string>
@@ -209,7 +252,9 @@ font: 12pt &quot;SF Pro Text&quot;;</string>
 	border: 3px solid;
 	border-color: rgb(255, 255, 255);
 	border-radius: 10px;
-	font: 57 16pt &quot;SF Pro Text&quot;;
+	
+	color: rgb(255, 255, 255);
+	font: 16pt &quot;Courier New&quot;;
 }
 
 QPushButton:hover {
@@ -218,6 +263,7 @@ QPushButton:hover {
 
 QPushButton:pressed {
 	background-color: rgb(11, 11, 11);
+	border-color: rgb(136, 136, 136);
 }</string>
     </property>
     <property name="text">

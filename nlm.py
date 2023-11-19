@@ -1,6 +1,5 @@
 import pygame
 import sys
-import time
 from math import *
 from utils import *
 
@@ -21,13 +20,16 @@ class BoxSlide:
         self.hinge = (350, 350)
         self.prev_box_points = None
         self.prev_box_pos = None
-        self.main_run = False
+        self.run = True
         self.start_point = None
         self.graph_start_coord = (550, 100)
-        self.graph_x_coord = 550
+        self.graph_x_coord = 552
         self.kinetic_energy = 0.5*self.box_mass*(self.box_vel**2)
         height = 0
         self.potential_energy = self.box_mass*self.gravity*height
+        self.edit = False
+        self.start_point = (self.hinge[0] - self.length*cos(self.inclination), self.hinge[1] - self.length*(sin(self.inclination)))
+        self.lamb = 170/(self.box_mass*self.gravity*(self.hinge[1]-self.start_point[1])*1000)
 
 
     def create_environment(self, surface):
@@ -45,13 +47,12 @@ class BoxSlide:
         if self.prev_box_pos is not None:
             self.prev_box_points = generate_box_points(self.prev_box_pos, self.inclination, self.boxsize)
 
-        
         pygame.draw.polygon(surface, (255, 255, 255), points=[self.box_pos, self.box_points[1], self.box_points[2], self.box_points[3]])
         
 
     def update_position(self):
         
-        if not self.main_run:
+        if self.run:
             a_g = self.gravity*sin(self.inclination)
             a_f = -self.coeff*self.gravity*sin(self.inclination)
 
@@ -81,17 +82,22 @@ class BoxSlide:
         height = (self.hinge[1] - self.box_pos[1])
         self.kinetic_energy = 0.5*self.box_mass*(self.box_vel**2)
         self.potential_energy = self.box_mass*self.gravity*height
-        
-        potential_y_coord = self.graph_start_coord[1]+size-20 - self.potential_energy*1000
-        kinetic_y_coord = self.graph_start_coord[1]+size-20 - self.kinetic_energy*1000
+    
+        potential_y_coord = self.graph_start_coord[1]+size-20 - self.lamb*self.potential_energy*1000
+        kinetic_y_coord = self.graph_start_coord[1]+size-20 - self.lamb*self.kinetic_energy*1000
 
-        total_energy_coord = self.graph_start_coord[1]+size-20 -(self.kinetic_energy + self.potential_energy)*1000
+        total_energy_coord = self.graph_start_coord[1]+size-20 - self.lamb*(self.kinetic_energy + self.potential_energy)*1000
 
         pygame.draw.circle(self.screen, (255, 0, 0), [self.graph_x_coord, potential_y_coord], radius=1)
         pygame.draw.circle(self.screen, (0, 0, 255), [self.graph_x_coord, kinetic_y_coord], radius=1)
         pygame.draw.circle(self.screen, (0, 255, 0), [self.graph_x_coord, total_energy_coord], radius=1)
 
-        self.graph_x_coord += 0.1
+        if self.inclination > radians(10) and self.coeff > 1:
+            self.graph_x_coord += 0.1*(self.inclination/(pi/6))*(1 - self.coeff)
+        elif self.inclination < radians(10):
+            self.graph_x_coord += 0.1*(self.inclination/(pi/20))
+        else:
+            self.graph_x_coord += 0.1
 
         #container
         pygame.draw.rect(self.screen, (200, 200, 200), rect=pygame.Rect(self.graph_start_coord[0], self.graph_start_coord[1], size, size), border_radius=4, width=2)
@@ -109,23 +115,46 @@ class BoxSlide:
                 self.stats()
 
             else:
-                self.main_run = True
+                self.run = False
 
-            if self.main_run:
+            if not self.run:
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.main_run = False
-                        pygame.draw.polygon(self.screen, (0, 0, 0), points=[self.box_points[0], self.box_points[1], self.box_points[2], self.box_points[3]])
-                        self.box_pos = self.start_point
-                        self.box_vel = 0
-                        self.graph_x_coord = 550
+                        xp, yp = event.pos 
+
+                        c = ((self.box_pos[0] + self.boxsize/sqrt(2)), self.box_pos[1])
+
+                        if (xp - c[0])**2 + (yp - c[1])**2 <= (self.boxsize)**2 /2:
+                            self.edit = True
+                            
+                            while self.edit: 
+
+                                for event1 in pygame.event.get():
+                                    if event1.type == pygame.MOUSEBUTTONUP:
+                                        x = event1.pos[0]
+                                        if x < self.start_point[0]:
+                                            x = self.start_point[0]
+                                        elif x+ self.boxsize*cos(self.inclination) > self.hinge[0]:
+                                            x = self.hinge[0]-self.boxsize*cos(self.inclination)
+                                        y = get_point_on_plane(self.start_point, self.hinge, x)
+                                        self.run = True
+                                        pygame.draw.polygon(self.screen, (0, 0, 0), points=[self.box_points[0], self.box_points[1], self.box_points[2], self.box_points[3]])
+                                        self.box_pos = (x, y)
+                                        self.box_vel = 0
+                                        self.graph_x_coord = 550
+                                        self.edit = False
+
 
                     elif event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
             
             pygame.display.update()
-
 
 class Pendulum:
     def __init__(self, theta: float, ball_mass= 1, gravity = 0.0009, rope_length: float = 1) -> None:
@@ -149,6 +178,8 @@ class Pendulum:
         self.kinetic_energy = 0.5*self.mass*((self.ang_bal_vel*self.rope_length)**2)
         height = 0
         self.potential_energy = self.mass*self.gravity*height
+        self.lamb = 150/(self.mass*self.rope_length*self.gravity*1000)
+        self.edit = False
 
     def create_environment(self):
         ceiling_points = [(100, 50), (350, 50)]
@@ -160,17 +191,18 @@ class Pendulum:
 
     def update_position(self):
         
-        self.ang_bal_acc = -self.gravity*sin(self.inst_theta)/self.rope_length
-        self.prev_ang_vel = self.ang_bal_vel
-        self.ang_bal_vel += self.ang_bal_acc
-        self.inst_theta += self.ang_bal_vel
-        
-        if self.ball_pos is None:
-            self.prev_ball_pos = self.init_pos
-        else:
-            self.prev_ball_pos = self.ball_pos
+        if not self.edit:
+            self.ang_bal_acc = -self.gravity*sin(self.inst_theta)/self.rope_length
+            self.prev_ang_vel = self.ang_bal_vel
+            self.ang_bal_vel += self.ang_bal_acc
+            self.inst_theta += self.ang_bal_vel
+            
+            if self.ball_pos is None:
+                self.prev_ball_pos = self.init_pos
+            else:
+                self.prev_ball_pos = self.ball_pos
 
-        self.ball_pos = (self.joint[0] + self.rope_length*sin(self.inst_theta), self.joint[1] + self.rope_length*cos(self.inst_theta))
+            self.ball_pos = (self.joint[0] + self.rope_length*sin(self.inst_theta), self.joint[1] + self.rope_length*cos(self.inst_theta))
 
 
         pygame.draw.line(self.screen, (100, 100, 100), self.joint, self.ball_pos, width=2)
@@ -191,36 +223,22 @@ class Pendulum:
         pygame.draw.line(self.screen, (140, 140, 140), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]+size), width=1)
         pygame.draw.line(self.screen, (140, 140, 140), (self.graph_start_coord[0], self.graph_start_coord[1]+size-40), (self.graph_start_coord[0]+size, self.graph_start_coord[1]+size-40), width=1)
 
-        
-        # prev stats
-        prev_height =(self.rope_length-(self.prev_ball_pos[1]-self.joint[1]))
-        prev_potential_energy = self.mass * self.gravity * prev_height
-        prev_kinetic_energy = 0.5 * self.mass * self.rope_length**2 * self.prev_ang_vel**2
-        
-        prev_potential_y_coord = self.graph_start_coord[1]+size-40 - round(prev_potential_energy, 4)*1000
-        prev_kinetic_y_coord = self.graph_start_coord[1]+size-40 - round(prev_kinetic_energy, 4)*1000
-
-        prev_total_energy_coord = self.graph_start_coord[1]+size-40 -(round(prev_kinetic_energy, 4) + round(prev_potential_energy, 4))*1000
         prev_graph_x_coord = self.graph_start_coord[0] -10 + (self.joint[0]+(self.prev_ball_pos[0]-self.joint[0]))/2
-
-        pygame.draw.circle(self.screen, (255, 0, 0), [prev_graph_x_coord, prev_potential_y_coord], radius=1)
-        pygame.draw.circle(self.screen, (0, 0, 255), [prev_graph_x_coord, prev_kinetic_y_coord], radius=1)
-        pygame.draw.circle(self.screen, (0, 255, 0), [prev_graph_x_coord, prev_total_energy_coord], radius=1)
 
         # current stats
         height = self.rope_length-(self.ball_pos[1]-self.joint[1])
         self.potential_energy = self.mass * self.gravity * height
         self.kinetic_energy = 0.5 * self.mass * self.rope_length**2 * self.ang_bal_vel**2
         
-        potential_y_coord = self.graph_start_coord[1]+size-40 - round(self.potential_energy, 4)*1000
-        kinetic_y_coord = self.graph_start_coord[1]+size-40 - round(self.kinetic_energy, 4)*1000
+        potential_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*round(self.potential_energy, 4)*1000
+        kinetic_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*round(self.kinetic_energy, 4)*1000
 
-        total_energy_coord = self.graph_start_coord[1]+size-40 -(round(self.kinetic_energy, 4) + round(self.potential_energy, 4))*1000
+        total_energy_coord = self.graph_start_coord[1]+size-40 - self.lamb*(round(self.kinetic_energy, 4) + round(self.potential_energy, 4))*1000
         self.graph_x_coord = self.graph_start_coord[0] -10 + (self.joint[0]+(self.ball_pos[0]-self.joint[0]))/2
 
-        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, potential_y_coord], radius=1.8)
-        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, kinetic_y_coord], radius=1.8)
-        pygame.draw.circle(self.screen, (30, 30, 30), [self.graph_x_coord, total_energy_coord], radius=1.8)
+        pygame.draw.circle(self.screen, (255, 0, 0), [self.graph_x_coord, potential_y_coord], radius=1.8)
+        pygame.draw.circle(self.screen, (0, 0, 255), [self.graph_x_coord, kinetic_y_coord], radius=1.8)
+        pygame.draw.circle(self.screen, (0, 255, 255), [self.graph_x_coord, total_energy_coord], radius=1.8)
 
         #container
         pygame.draw.rect(self.screen, (200, 200, 200), rect=pygame.Rect(self.graph_start_coord[0], self.graph_start_coord[1], size, size), border_radius=4, width=2)
@@ -242,6 +260,29 @@ class Pendulum:
             self.stats()                
             
             for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    x1,y1 = event.pos
+
+                    if sqrt((x1-self.ball_pos[0])**2 + (y1 - self.ball_pos[1])**2) <= 15:
+                        self.edit = True 
+                    
+                        while self.edit:
+                            for event1 in pygame.event.get():
+                                if event1.type == pygame.MOUSEBUTTONUP:
+                                    x = event1.pos[0]
+
+                                    if x > 225 + self.rope_length*sin(self.init_theta):
+                                        x = 225 + self.rope_length*sin(self.init_theta)
+                                    elif x < 225 - self.rope_length*sin(self.init_theta):
+                                        x = 225 - self.rope_length*sin(self.init_theta)
+
+                                    t = asin((x - 225)/self.rope_length)
+                                    print(x - 225)
+                                    print(degrees(t))
+                                    self.ang_bal_vel = 0
+                                    self.inst_theta = t
+                                    self.edit = False
+
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
@@ -271,8 +312,12 @@ class Spring:
         self.graph_start_coord = (550, 100)
         self.graph_x_coord = 550
         self.kinetic_energy = 0.5*self.box_mass*(self.v**2)
-        self.x = -amplitude*10
-        self.potential_energy = 0.5*self.k*(self.x)**2
+        self.amplitude = amplitude
+        self.x = amplitude*10
+        self.potential_energy = 0.5*self.k*(self.x/100)**2
+        self.lamb = 500/(0.5*self.k*(amplitude*10)**2)
+        self.edit = False
+        self.init_pos = (self.hinge[0]-self.length+120-self.x, self.hinge[1])
 
     def create_environment_1(self):
         
@@ -302,9 +347,10 @@ class Spring:
         pygame.draw.circle(self.screen, (100, 100, 100), springend, radius=2)
 
     def update_movement(self):
-        self.a = (-(self.k*self.x/self.box_mass)+ copysign(1, self.x)*self.fric_coeff*self.gravity*self.v)*0.00003
-        self.v += self.a
-        self.x += self.v
+        if not self.edit:
+            self.a = -(self.k*self.x/self.box_mass)*0.000100
+            self.v += self.a
+            self.x += self.v
 
     def stats(self):
         
@@ -324,12 +370,13 @@ class Spring:
         # current stats
         self.kinetic_energy = 0.5*self.box_mass*(self.v**2)
         self.potential_energy = 0.5*self.k*(self.x/100)**2
+        'print(self.kinetic_energy, self.potential_energy)'
 
-        potential_y_coord = self.graph_start_coord[1]+size-40 - round(self.potential_energy, 4)*1000
-        kinetic_y_coord = self.graph_start_coord[1]+size-40 - round(self.kinetic_energy, 4)*3333
+        potential_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*self.potential_energy*1000
+        kinetic_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*self.kinetic_energy*1000
 
-        total_energy_coord = self.graph_start_coord[1]+size-40 -(round(self.kinetic_energy, 4)*3.3333 + round(self.potential_energy, 4))*1000
-        self.graph_x_coord = self.graph_start_coord[0] + size/2 + (self.x)/1.5
+        total_energy_coord = self.graph_start_coord[1]+size-40 - self.lamb*(self.kinetic_energy*1000 + self.potential_energy*1000)
+        self.graph_x_coord = self.graph_start_coord[0] + size/2 - (self.x)/1.5
 
         pygame.draw.circle(self.screen, (255, 0, 0), [self.graph_x_coord, potential_y_coord], radius=1.4)
         pygame.draw.circle(self.screen, (0, 0, 255), [self.graph_x_coord, kinetic_y_coord], radius=1.4)
@@ -350,6 +397,7 @@ class Spring:
             self.stats()
 
             for event in pygame.event.get():
+
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
@@ -357,5 +405,5 @@ class Spring:
             pygame.display.update()
 
 
-'''pendu = Pendulum(theta=40, ball_mass=2, rope_length=1.5)
-pendu.keep_alive()'''
+'''box = BoxSlide(inclination=30, fric_coeff=0)
+box.keep_alive()'''

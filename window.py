@@ -13,67 +13,93 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 500)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("resources/atom (2).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(7, 7, 7);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Heading = QtWidgets.QLabel(self.centralwidget)
-        self.Heading.setGeometry(QtCore.QRect(40, 20, 231, 61))
+        self.Heading.setGeometry(QtCore.QRect(40, 20, 261, 61))
         self.Heading.setStyleSheet("background-color: rgb(7, 7, 7);\n"
 "color: rgb(245, 245, 245);\n"
-"font: 57 20pt \"SF Pro Text\";")
+"font: 18pt \"Courier New\";")
         self.Heading.setObjectName("Heading")
         self.paragraph = QtWidgets.QLabel(self.centralwidget)
         self.paragraph.setGeometry(QtCore.QRect(40, 40, 211, 191))
         self.paragraph.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.paragraph.setStyleSheet("background-color: rgb(7, 7, 7);\n"
 "color: rgb(245, 245, 245);\n"
-"font: 12pt \"SF Pro Text\";")
+"font: 12pt \"Courier New\";")
         self.paragraph.setWordWrap(True)
         self.paragraph.setObjectName("paragraph")
         self.boximage = QtWidgets.QLabel(self.centralwidget)
         self.boximage.setGeometry(QtCore.QRect(150, 20, 501, 261))
+        self.boximage.setStyleSheet("background-color: rgb(7, 7, 7);")
         self.boximage.setText("")
-        self.boximage.setPixmap(QtGui.QPixmap("../../../Downloads/Untitled.svg"))
+        self.boximage.setPixmap(QtGui.QPixmap("resources/Untitled.svg"))
         self.boximage.setObjectName("boximage")
         self.boxhead = QtWidgets.QLabel(self.centralwidget)
-        self.boxhead.setGeometry(QtCore.QRect(430, 20, 141, 41))
+        self.boxhead.setGeometry(QtCore.QRect(430, 20, 201, 41))
+        self.boxhead.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 11pt \"Courier New\";")
         self.boxhead.setObjectName("boxhead")
         self.boxpara = QtWidgets.QLabel(self.centralwidget)
-        self.boxpara.setGeometry(QtCore.QRect(450, 60, 161, 61))
+        self.boxpara.setGeometry(QtCore.QRect(450, 60, 181, 61))
+        self.boxpara.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 10pt \"Courier New\";")
         self.boxpara.setWordWrap(True)
         self.boxpara.setObjectName("boxpara")
         self.pendimg = QtWidgets.QLabel(self.centralwidget)
         self.pendimg.setGeometry(QtCore.QRect(-170, 240, 491, 401))
+        self.pendimg.setStyleSheet("background-color: rgb(7, 7, 7);")
         self.pendimg.setText("")
-        self.pendimg.setPixmap(QtGui.QPixmap("../../../Downloads/Untitled (1).svg"))
+        self.pendimg.setPixmap(QtGui.QPixmap("resources/Untitled (1).svg"))
         self.pendimg.setObjectName("pendimg")
         self.penduhead = QtWidgets.QLabel(self.centralwidget)
-        self.penduhead.setGeometry(QtCore.QRect(160, 290, 141, 17))
+        self.penduhead.setGeometry(QtCore.QRect(160, 290, 171, 17))
+        self.penduhead.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 11pt \"Courier New\";")
         self.penduhead.setObjectName("penduhead")
         self.pendupara = QtWidgets.QLabel(self.centralwidget)
-        self.pendupara.setGeometry(QtCore.QRect(130, 310, 141, 111))
+        self.pendupara.setGeometry(QtCore.QRect(130, 310, 151, 111))
+        self.pendupara.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 10pt \"Courier New\";")
         self.pendupara.setWordWrap(True)
         self.pendupara.setObjectName("pendupara")
         self.springimg = QtWidgets.QLabel(self.centralwidget)
         self.springimg.setGeometry(QtCore.QRect(430, 160, 431, 211))
+        self.springimg.setStyleSheet("background-color: rgb(7, 7, 7);")
         self.springimg.setText("")
-        self.springimg.setPixmap(QtGui.QPixmap("../../../Downloads/Untitled (3).svg"))
+        self.springimg.setPixmap(QtGui.QPixmap("resources/Untitled (3).svg"))
         self.springimg.setObjectName("springimg")
         self.springhead = QtWidgets.QLabel(self.centralwidget)
-        self.springhead.setGeometry(QtCore.QRect(370, 210, 151, 17))
+        self.springhead.setGeometry(QtCore.QRect(340, 200, 201, 17))
+        self.springhead.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 11pt \"Courier New\";")
         self.springhead.setObjectName("springhead")
         self.springpara = QtWidgets.QLabel(self.centralwidget)
         self.springpara.setGeometry(QtCore.QRect(370, 220, 151, 111))
+        self.springpara.setStyleSheet("background-color: rgb(7, 7, 7);\n"
+"color: rgb(245, 245, 245);\n"
+"font: 10pt \"Courier New\";")
         self.springpara.setWordWrap(True)
         self.springpara.setObjectName("springpara")
-        self.gobutton = QtWidgets.QPushButton(self.centralwidget, clicked= lambda: self.show_second_window(MainWindow))
+        self.gobutton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.show_second_window(MainWindow))
         self.gobutton.setGeometry(QtCore.QRect(520, 380, 171, 61))
         self.gobutton.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(11, 11, 11);\n"
 "    border: 3px solid;\n"
 "    border-color: rgb(255, 255, 255);\n"
 "    border-radius: 10px;\n"
-"    font: 57 16pt \"SF Pro Text\";\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
+"    font: 16pt \"Courier New\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
@@ -82,6 +108,7 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: rgb(11, 11, 11);\n"
+"    border-color: rgb(136, 136, 136);\n"
 "}")
         self.gobutton.setObjectName("gobutton")
         self.boximage.raise_()
@@ -110,7 +137,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Simulator"))
         self.Heading.setText(_translate("MainWindow", "Physics Simulator."))
         self.paragraph.setText(_translate("MainWindow", "Designed to help students understand physics in a better way by visualising the process through accurate simulations. "))
         self.boxhead.setText(_translate("MainWindow", "Sliding box simulator."))
