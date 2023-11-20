@@ -1,4 +1,5 @@
 from math import *
+import pickle
 
 def generate_box_points(rp: tuple, inclination: float, boxsize: float):
     point1 = (rp[0] + boxsize*sin(inclination), rp[1] - boxsize*cos(inclination))
@@ -24,3 +25,30 @@ def get_point_on_plane(p1: tuple, p2: tuple, x: float):
 def get_point_on_pend_locus(cp: tuple, r: float, x: float):
     y = cp[1] + sqrt(r**2 - (x - cp[0])**2)
     return y
+
+def show_history():
+
+    with open('simulation.hist', 'rb') as f:
+        try: 
+            hist = pickle.load(f)
+            # convert into reaadable format            
+            out = [] 
+            for i in hist:
+                if i[0] == "Box Slide":
+                    s = f"{i[0]} :  Mass = {i[1][0]}, Friction coefficient = {i[1][1]}, Inclination = {i[1][2]}"
+
+                elif i[0] == "Pendulum":
+                    s = f"{i[0]} :  Angluar Amplitude = {i[1][0]}, Ball mass = {i[1][1]}, Rope length = {i[1][2]}"
+
+                elif i[0] == "Spring":
+                    s = f"{i[0]} :  Spring Constant = {i[1][0]}, Box mass = {i[1][1]}, Amplitude = {i[1][2]}"
+                
+                out.append(s)
+            
+            print("\nHISTORY:\n")
+
+            for i in enumerate(out, start=1):
+                print(f"{i[0]}) {i[1]}")
+        
+        except EOFError:
+            print("No history.")

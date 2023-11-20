@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from math import *
 from nlm import *
+import pickle
 
 class Ui_secondwindow(object):
 
@@ -9,6 +10,21 @@ class Ui_secondwindow(object):
         mass = float(self.penduboxmass_2.toPlainText())
         friction = self.fricoeff.value() / 100
         inc = 1 + (84 / 100) * self.incdial.value()
+        
+        with open('simulation.hist', 'rb') as f:
+            try:
+                data = pickle.load(f)
+                data.append(['Box Slide',  (mass, friction, inc)])
+                
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump(data, f1)
+                f1.close()
+
+            except EOFError:
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump([['Box Slide',  (mass, friction, inc)]], f1)
+                f1.close()
+
         box = BoxSlide(inc, mass, friction)
         window.close()
         box.keep_alive()
@@ -53,6 +69,20 @@ class Ui_secondwindow(object):
         length = self.lengthslider.value() / 50
         mass = float(self.penduboxmass.toPlainText())
 
+        with open('simulation.hist', 'rb') as f:
+            try:
+                data = pickle.load(f)
+                data.append(['Pendulum',  (theta, mass, length)])
+                
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump(data, f1)
+                f1.close()
+
+            except EOFError:
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump([['Pendulum',  (theta, mass, length)]], f1)
+                f1.close()
+
         pendulum = Pendulum(theta=theta, ball_mass=mass, rope_length=length)
         window.close()
         pendulum.keep_alive()
@@ -78,6 +108,21 @@ class Ui_secondwindow(object):
         k = self.kdial.value()*0.1
         mass = float(self.spboxval.toPlainText())
         amp = self.ampslid.value()/10
+
+        with open('simulation.hist', 'rb') as f:
+            try:
+                data = pickle.load(f)
+                data.append(['Spring',  (k, mass, amp)])
+                
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump(data, f1)
+                f1.close()
+
+            except EOFError:
+                f1 = open('simulation.hist', 'wb')
+                pickle.dump([['Spring',  (k, mass, amp)]], f1)
+                f1.close()
+
         spring = Spring(spring_constant=k, box_mass=mass, amplitude=amp)
         window.close()
         spring.keep_alive()
