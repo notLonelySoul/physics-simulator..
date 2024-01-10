@@ -52,3 +52,9 @@ def show_history():
         
         except EOFError:
             print("No history.")
+            
+def print_info():
+    print("\nGraph-info:\n[Red] : Potential energy\n[Blue] : Kinetic energy\n[Green] : Total energy.")
+    
+    
+    

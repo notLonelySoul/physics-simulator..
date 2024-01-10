@@ -397,7 +397,3 @@ class Spring:
                     sys.exit()
 
             pygame.display.update()
-
-
-'''box = BoxSlide(inclination=30, fric_coeff=0)
-box.keep_alive()'''

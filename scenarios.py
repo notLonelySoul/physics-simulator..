@@ -1,12 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from math import *
 from nlm import *
+from utils import *
 import pickle
 
 class Ui_secondwindow(object):
 
     # For box
     def run_box_sim(self, window):
+        print_info()
         mass = float(self.penduboxmass_2.toPlainText())
         friction = self.fricoeff.value() / 100
         inc = 1 + (84 / 100) * self.incdial.value()
@@ -65,6 +67,7 @@ class Ui_secondwindow(object):
             self.tpvals.setText(f'{round(2 * pi * sqrt(length / 9.8), 2)} s')
 
     def run_pendu_sim(self, window):
+        print_info()
         theta = self.pendial.value() * 0.9
         length = self.lengthslider.value() / 50
         mass = float(self.penduboxmass.toPlainText())
@@ -105,6 +108,8 @@ class Ui_secondwindow(object):
             self.tpval.setText(f'{round(2 * pi * sqrt(float(mass) / k), 2)} s')
 
     def run_spring_sim(self, window):
+        print_info()
+        
         k = self.kdial.value()*0.1
         mass = float(self.spboxval.toPlainText())
         amp = self.ampslid.value()/10
