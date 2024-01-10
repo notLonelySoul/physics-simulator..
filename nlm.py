@@ -274,8 +274,6 @@ class Pendulum:
                                         x = 225 - self.rope_length*sin(self.init_theta)
 
                                     t = asin((x - 225)/self.rope_length)
-                                    print(x - 225)
-                                    print(degrees(t))
                                     self.ang_bal_vel = 0
                                     self.inst_theta = t
                                     self.edit = False
@@ -367,7 +365,6 @@ class Spring:
         # current stats
         self.kinetic_energy = 0.5*self.box_mass*(self.v**2)
         self.potential_energy = 0.5*self.k*(self.x/100)**2
-        'print(self.kinetic_energy, self.potential_energy)'
 
         potential_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*self.potential_energy*1000
         kinetic_y_coord = self.graph_start_coord[1]+size-40 - self.lamb*self.kinetic_energy*1000
