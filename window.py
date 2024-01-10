@@ -13,6 +13,10 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 500)
+        
+        MainWindow.setFixedHeight(500)
+        MainWindow.setFixedWidth(800)
+        
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("resources/atom (2).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)

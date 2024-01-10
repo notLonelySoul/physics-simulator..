@@ -130,6 +130,10 @@ class Ui_secondwindow(object):
     def setupUi(self, secondwindow):
         secondwindow.setObjectName("secondwindow")
         secondwindow.resize(800, 500)
+        
+        secondwindow.setFixedHeight(500)
+        secondwindow.setFixedWidth(800)
+        
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("resources/atom (2).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         secondwindow.setWindowIcon(icon)
