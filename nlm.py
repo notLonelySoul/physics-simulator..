@@ -75,9 +75,6 @@ class BoxSlide:
         for i in range(self.graph_start_coord[1], self.graph_start_coord[1]+size, 20):
             pygame.draw.line(self.screen, (50, 50, 50), (self.graph_start_coord[0], i), (self.graph_start_coord[0]+size, i))
 
-        #axis
-        '''pygame.draw.line(self.screen, (140, 140, 140), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]), ((2*self.graph_start_coord[0]+size)/2, self.graph_start_coord[1]+size))
-        pygame.draw.line(self.screen, (140, 140, 140), (self.graph_start_coord[0], (2*self.graph_start_coord[1]+size)/2), (self.graph_start_coord[0]+size, (2*self.graph_start_coord[1]+size)/2))'''
 
         height = (self.hinge[1] - self.box_pos[1])
         self.kinetic_energy = 0.5*self.box_mass*(self.box_vel**2)
